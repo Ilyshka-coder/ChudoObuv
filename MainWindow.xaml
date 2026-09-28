@@ -7,6 +7,15 @@
         mc:Ignorable="d"
         Title="Алалыкин ИСП41" Height="450" Width="800" MinHeight="750" MinWidth="1250" WindowState="Maximized" Icon="ObuvRes\Чудо Обувь.ico">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="120"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" Background="#D2F6E7"></Border>
+        <Image Source="ObuvRes/Чудо Обувь.png" HorizontalAlignment="Left"></Image>
+        <TextBlock Text="Чудо обувь" FontSize="50" HorizontalAlignment="Center" VerticalAlignment="Center" Height="60" Width="250"></TextBlock>
+        <Frame Grid.Row="1" Name="MainFrame" ContentRendered="MainFrame_ContentRendered" Navigated="MainFrame_Navigated" NavigationUIVisibility="Hidden" ></Frame>
+        <Button Content="Назад" Name="BtnBack" HorizontalAlignment="Right" Height="60" Width="85" FontSize="50" Click="BtnBack_Click"></Button>
     </Grid>
 </Window>
