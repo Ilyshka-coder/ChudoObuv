@@ -15,33 +15,33 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <StackPanel Margin="10" Orientation="Horizontal">
-                <TextBlock Text="Введите название для поиска " TextAlignment="Right" Width="300" FontSize="20"></TextBlock>
-                <TextBox Name="TBoxSearch" TextChanged="TBoxSearch_TextChanged" Width="300" FontSize="15"></TextBox>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="10">
-                <TextBlock Text="Выберите название для поиска " TextAlignment="Right" Width="300" FontSize="20"></TextBlock>
-                <ComboBox Name="ComboType" SelectionChanged="ComboType_SelectionChanged" FontSize="15" Width="200">
-                    <TextBlock>Все</TextBlock>
-                    <TextBlock> мужское</TextBlock>
-                    <TextBlock> женское</TextBlock>
-                    <TextBlock> детское</TextBlock>
-                </ComboBox>
-            </StackPanel>
+        <Border Grid.Row="0" Background="#D2F6E7"></Border>
+        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left">
+            <TextBlock Text="Поиск " TextAlignment="Right" Width="100" FontSize="20"></TextBlock>
+            <TextBox Name="TBoxSearch" TextChanged="TBoxSearch_TextChanged" Width="300" FontSize="20" Height="35"></TextBox>
+            <TextBlock Text=" "/>
+            <ComboBox Name="ComboCategory" SelectionChanged="ComboCategory_SelectionChanged" FontSize="15" Width="120" Height="35">
+                    <TextBlock Width="80">Все</TextBlock>
+                <TextBlock Width="80"> мужское</TextBlock>
+                <TextBlock Width="80"> женское</TextBlock>
+                <TextBlock Width="80"> детское</TextBlock>
+            </ComboBox>
+            <TextBlock Text=" "/>
+            <ComboBox Name="ComboSort" SelectionChanged="ComboSort_SelectionChanged" FontSize="15" Width="250" Height="35">
+                <TextBlock Width="220"> От а до я</TextBlock>
+                <TextBlock Width="220"> От я до а</TextBlock>
+                <TextBlock Width="220"> По убыванию в цене</TextBlock>
+                <TextBlock Width="220"> По возрастанию в цене</TextBlock>
+            </ComboBox>
         </WrapPanel>
-        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
-            <RadioButton Content="По возрастанию стоимости" GroupName="Sort" Width="300" FontSize="20" Checked="RButtonUp_Checked" Name="RButtonUp"></RadioButton>
-            <RadioButton Content="По убыванию стоимости" GroupName="Sort" Width="300" FontSize="20" Checked="RButtonDown_Checked" Name="RButtonDown"></RadioButton>
-        </StackPanel>
-        <ListView Name="ProductListView" Grid.Row="2" >
+        <ListView Name="ProductListView" Grid.Row="2">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="200"></ColumnDefinition>
+                            <ColumnDefinition Width="1450"></ColumnDefinition>
+                            <ColumnDefinition Width="250"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="50"/>
@@ -49,6 +49,7 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
+                        <Border BorderThickness="1" BorderBrush="Black" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="4" ></Border>
                         <Image Width="200" Grid.Column="0" Grid.RowSpan="4" Stretch="UniformToFill" HorizontalAlignment="Center">
                             <Image.Source>
                                 <Binding Path="ImagePath">
@@ -60,8 +61,10 @@
                                 </Binding>
                             </Image.Source>
                         </Image>
-                        <TextBlock Text="{Binding ProductName}" Grid.Column="1" Width="auto" Grid.Row="0" HorizontalAlignment="Left" FontSize="30" TextWrapping="Wrap" Height="auto"></TextBlock>
-                        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
+                        <TextBlock Text="{Binding ProductName}" Width="auto" HorizontalAlignment="Center" Grid.ColumnSpan="2" FontSize="30" TextWrapping="Wrap" Height="auto" Grid.Column="1"></TextBlock>
+                        <TextBlock Text="{Binding SubcategoryName}" Height="auto" Width="auto" TextWrapping="Wrap" FontSize="30" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Right"></TextBlock>
+                        <TextBlock Text="{Binding ManufactureName}" FontSize="30" Margin="5" Height="auto" Width="auto" Grid.Row="1" Grid.Column="1"/>
+                        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center">
                             <TextBlock Text="{Binding Price}" FontSize="30" Margin="5" Height="auto" Width="auto"></TextBlock>
                             <TextBlock Text=" рублей" FontSize="30" Height="auto" Margin="5" Width="auto"></TextBlock>
                         </StackPanel>

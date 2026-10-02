@@ -25,16 +25,12 @@ namespace ChudoObuv
             InitializeComponent();
             var currentServices = AlalykinChydoobuvEntities.GetContext().Products.ToList();
             ProductListView.ItemsSource = currentServices;
-            ComboType.SelectedIndex = 0;
+            ComboCategory.SelectedIndex = 0;
+            ComboSort.SelectedIndex = 0;
             UpdateProducts();
         }
 
         private void TBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            UpdateProducts();
-        }
-
-        private void ComboType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             UpdateProducts();
         }
@@ -61,32 +57,50 @@ namespace ChudoObuv
         private void UpdateProducts()
         {
             var currentServices = AlalykinChydoobuvEntities.GetContext().Products.ToList();
-            if (ComboType.SelectedIndex == 1)
+            if (ComboCategory.SelectedIndex == 1)
             {
                 currentServices = currentServices.Where(p => (Convert.ToInt32(p.CategoryID) == 3)).ToList();
             }
-            if (ComboType.SelectedIndex == 2)
+            if (ComboCategory.SelectedIndex == 2)
             {
                 currentServices = currentServices.Where(p => (Convert.ToInt32(p.CategoryID) == 2)).ToList();
             }
-            if (ComboType.SelectedIndex == 3)
+            if (ComboCategory.SelectedIndex == 3)
             {
                 currentServices = currentServices.Where(p => (Convert.ToInt32(p.CategoryID) == 1)).ToList();
             }
-            if (ComboType.SelectedIndex == 0)
+            if (ComboCategory.SelectedIndex == 0)
             {
                 currentServices = currentServices.ToList();
             }
-            currentServices = currentServices.Where(p => p.ProductName.ToLower().Contains(TBoxSearch.Text.ToLower())).ToList();
-            ProductListView.ItemsSource = currentServices.ToList();
-            if (RButtonDown.IsChecked.Value)
+            if (ComboSort.SelectedIndex == 0)
             {
-                currentServices = currentServices.OrderByDescending(p => p.Price).ToList();
+                currentServices = currentServices.OrderBy(p => p.ProductName).ToList();
             }
-            if (RButtonUp.IsChecked.Value)
+            if (ComboSort.SelectedIndex == 1)
+            {
+                currentServices = currentServices.OrderByDescending(p => p.ProductName).ToList();
+            }
+            if (ComboSort.SelectedIndex == 2)
             {
                 currentServices = currentServices.OrderBy(p => p.Price).ToList();
             }
+            if (ComboSort.SelectedIndex == 3)
+            {
+                currentServices = currentServices.OrderByDescending(p => p.Price).ToList();
+            }
+            currentServices = currentServices.Where(p => (p.ProductName.ToLower().Contains(TBoxSearch.Text.ToLower())||p.SubcategoryName.ToLower().Contains(TBoxSearch.Text.ToLower())|| p.ManufactureName.ToLower().Contains(TBoxSearch.Text.ToLower())|| p.Description.ToLower().Contains(TBoxSearch.Text.ToLower()))).ToList();
+            ProductListView.ItemsSource = currentServices.ToList();
+        }
+
+        private void ComboCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateProducts();
+        }
+
+        private void ComboSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateProducts();
         }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ChudoObuv"
         mc:Ignorable="d"
-        Title="Алалыкин ИСП41" Height="450" Width="800" MinHeight="750" MinWidth="1250" WindowState="Maximized" Icon="ObuvRes\Чудо Обувь.ico">
+        Title="Алалыкин ИСП41" Height="450" Width="800" MinHeight="750" MinWidth="1930" WindowState="Maximized" Icon="ObuvRes\Чудо Обувь.ico">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="120"/>

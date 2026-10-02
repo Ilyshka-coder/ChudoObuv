@@ -22,11 +22,14 @@ namespace ChudoObuv
     
         public int ProductID { get; set; }
         public int CategoryID { get; set; }
+        public string CategoryName { get { return Category.CategoryName; } }
         public int SubcategoryID { get; set; }
+        public string SubcategoryName { get { return Subcategory.SubcategoryName; } }
         public string Image { get; set; }
         public string ImagePath { get { return "Images/" + Image; } }
         public string ProductName { get; set; }
         public int ManufactureID { get; set; }
+        public string ManufactureName { get { return Manufacture.ManufactureName; } }
         public string Description { get; set; }
         public string Structure { get; set; }
         public double Price { get; set; }
